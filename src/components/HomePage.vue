@@ -3,19 +3,23 @@
     <div class="container">
         <h1>Home Page</h1>
         <section class="vh-100" style="background-color: #eee;">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="container py-5 ">
+                <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-md-12 col-xl-10">
 
                         <div class="card">
 
                             <div class="card-header p-3">
                                 <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>To-do List Application</h5>
-                                <button class="btn btn-primary" style="float: right">Add Task</button>
+                           
+                           
+                                <button type="button" class="btn btn-outline-primary" style="float: right ">
+                                    <router-link to="/add">Add Task</router-link>
+                                </button>
                             </div>
-                            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; ">
 
-                                <table class="table mb-0">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Status</th>
@@ -30,11 +34,7 @@
                                         <tr class="fw-normal" v-for="list of lists " v-bind:key="list.id">
                                             <div class="form-check">
                                                 <input @click="
-                                                ChkStatus(
-                                       list.id,
-                                        list.status,
-                                        list.taskName,
-                                      list.priority)" class="form-check-input" type="checkbox" :value="upstatus" v-model="list.status" true-value="done" false-value="undone" />
+                                                ChkStatus(list.id,list.status,list.taskname,list.priority)" class="form-check-input" type="checkbox" :value="upstatus" v-model="list.status" true-value="done" false-value="undone" />
                                                 <label class="form-check-label" for="flexCheckCheckedDisabled">
                                                     {{ list.status }}
                                                 </label>
@@ -42,15 +42,11 @@
 
                                             <td class="align-middle">{{ list.taskname }}</td>
                                             <td class="align-middle">
-                                                <h6 class="mb-0">
-                                                    <span v-if="list.priority == 'high'" class="badge bg-danger">{{ list.priority }}</span>
-                                                    <span v-if="list.priority == 'medium'" class="badge bg-warning">{{ list.priority }}</span>
-                                                    <span v-if="list.priority == 'low'" class="badge bg-success">{{ list.priority }}</span>
-                                                </h6>
+                                                <h6 class="mb-0"><span>{{ list.priority }}</span></h6>
                                             </td>
 
                                             <td class="align-middle">
-                                                <button id="edit" class="btn btn-primary">EDIT</button>&nbsp;
+                                             <router-link :to="'/edit/'+list.id" class="btn btn-primary">EDIT</router-link>&nbsp;
 
                                                 <button id="delete" class="btn btn-secondary" v-on:click="removeItem(list.id)">DELETE</button>
                                             </td>
@@ -129,8 +125,11 @@ export default {
                     console.log(e);
                 }
             }
+        },
+        moveToEdit(){
+            this.$router.push('/edit');
         }
-    },
+    }
 
     //alert("qqqqqq");
     //console.log( this.$http);
