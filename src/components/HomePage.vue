@@ -1,10 +1,10 @@
 <template>
-<div id="app" style="background-color:antiquewhite">
-    <div class="container">
+<div id="app">
+    <div class="container" >
         <header>
-            <h1 style="text-align:center;">Home Page</h1>
+            <h1 style="text-align:center; background-color:lightblue">Home Page</h1>
         </header>
-        <section class="vh-100" style="background-color: #eee;">
+        <section class="vh-100" style="background-color:beige">
             <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-md-12 col-xl-10">
@@ -23,10 +23,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Task</th>
-                                            <th scope="col">Priority</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col" style="font-size:20px">Status</th>
+                                            <th scope="col" style="font-size:20px">Task</th>
+                                            <th scope="col" style="font-size:20px">Priority</th>
+                                            <th scope="col" style="font-size:20px">Actions</th>
 
                                         </tr>
                                     </thead>
