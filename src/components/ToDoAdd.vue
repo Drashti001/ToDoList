@@ -1,17 +1,17 @@
 <template>
     <div id="app">
     
-        <h1>Add New Task Page</h1><br><br>
+        <h1>Add Task Page</h1><br><br>
         <form>
-            <h3>Add New Task</h3>
-            <input type="text" placeholder="enter task" v-model="taskname" required /><br><br>
-            <h3>Select Your Priority</h3>
+            <h4>Add New Task <input type="text" placeholder="enter your task" v-model="taskname" required /></h4><br>
+            
+            <h4>Select Your Priority</h4><br>
             <input type="radio" id="high" value="High" v-model="priority">
-            <label for="High">High</label><br>
+            <label for="High" style="font-size:20px">High</label><br>
               <input type="radio" id="medium" name="" value="Medium" v-model="priority">
-            <label for="Medium">Medium</label><br>
+            <label for="Medium" style="font-size:20px">Medium</label><br>
             <input type="radio" id="Low" name="" value="Low" v-model="priority">
-            <label for="Low">Low</label><br>
+            <label for="Low" style="font-size:20px">Low</label><br>
             <button type="submit" class="btn btn-primary mb-3" v-on:click="addItem()" @click.prevent="GoToHome()" >Add Task</button>&nbsp;<br>
             <a class="btn btn-primary" href="/" role="button">Back To Home</a>
         </form>
@@ -32,7 +32,7 @@
                 //taskname: "",
                // priority: null,
                // status: "undone",
-                //submitted: false
+                submitted: false
             }
     
         },
@@ -64,8 +64,10 @@
     }
     
     h1 {
+
         text-align: center;
     
     }
+ 
     </style>
     
