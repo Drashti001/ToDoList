@@ -12,11 +12,11 @@
                         <div class="card">
 
                             <div class="card-header p-3">
-                                <h5 class="mb-0"><i class="fas fa-tasks me-2">To-do List Application</i></h5>
-
-                                <button type="button" class="btn btn-outline-primary" style="float: right ">
+                                <h5 style=" margin-top: 0.67em;font-weight: bold;">To-do List Application <button type="button" class="btn btn-light" style="float: right;  ">
                                     <router-link to="/add">Add Task</router-link>
-                                </button>
+                                </button></h5>
+
+                                
                             </div>
                             <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; ">
 
@@ -42,7 +42,8 @@
 
                                             <td class="align-middle" v-bind:class="list.status ? 'isclicked' : '' ">{{ list.taskname }}</td>
                                             <td class="align-middle">
-                                                <h6 class="mb-0"><span>{{ list.priority }}</span></h6>
+                                                <button type="button" class="btn btn-info">{{ list.priority }}</button>
+                                               <!-- <h6 class="mb-0"><span>{{ list.priority }}</span></h6>-->
                                             </td>
 
                                             <td class="align-middle">
