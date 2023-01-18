@@ -28,11 +28,11 @@
         data() {
             return {
     
-                // lists: [],
-                taskname: "",
-                priority: null,
-                status: "undone",
-                submitted: false
+                 lists: [],
+                //taskname: "",
+               // priority: null,
+               // status: "undone",
+                //submitted: false
             }
     
         },
@@ -42,16 +42,12 @@
                     .post(`http://localhost:3000/lists`, {
                         taskname: this.taskname,
                         priority: this.priority,
-                        status: this.status
-                    })
-                    .then(function (data) {
-                        console.log(data);
-                        this.taskname = "";
-                        this.priority = "";
-                        this.status="";
-                        this.submitted = true;
-                        this.lists = [...this.lists, res.data];
+                        status: false,
                     });
+                    this.lists = [...this.lists, res.data];
+                    this.taskname = "";
+                    this.priority = "";
+                    
             },
             GoToHome(){
                     this.$router.push('/');
@@ -64,7 +60,7 @@
     <style scoped>
     div {
         text-align: center;
-        background-color: beige;
+        background-color:antiquewhite;
     }
     
     h1 {

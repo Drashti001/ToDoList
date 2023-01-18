@@ -15,26 +15,13 @@
         <button type="submit" class="btn btn-primary mb-3" v-on:click="editTask" @click.prevent="GoToHome()">Edit Task</button>&nbsp;<br>
         <a class="btn btn-primary" href="/" role="button">Back To Home</a>
     </form>
-    <div v-if="submitted">
+   <!-- <div v-if="submitted">
         <p>Data Submitted</p>
-    </div>
+    </div>-->
 
 </div>
 </template>
-<!--<template>
-    <div class="input-group mb-3">
-        <router-link to="/" tag="button" class="btn btn-warning">home</router-link>
-        <input type="text" class="form-control" value="task.taskname" v-model="lists.taskname" />
-        <button v-on:click="editTask">Add Task</button>
-        <div>Selected:{{ lists.priority }}</div>
-        <select class="form-select" v-model="lists.priority">
-            <option disabled value="">Please select one</option>
-            <option class="badge bg-success">Low</option>
-            <option class="badge bg-warning">Medium</option>
-            <option class="badge bg-danger">High</option>
-        </select>
-    </div>
-</template>-->
+
 
 <script>
 import axios from 'axios';
@@ -67,23 +54,37 @@ export default {
         GoToHome() {
             this.$router.push('/');
         },
-        editTask: function () {
-            axios.put('http://localhost:3000/lists/' + this.$route.params.id, {
-                taskname: this.lists.taskname,
-                priority: this.lists.priority,
-                status:this.lists.status
+       /*editTask: function () {
+            const res = axios.put('http://localhost:3000/lists/' + this.$route.params.id); 
+                this.lists=res.data;
+                this.lists.taskname=this.lists;
+                console.log(this.lists.taskname);
                 // taskname:"", 
                 // priority:""
-            }, );
+            }
+        },*/
+        editTask: function () {
+            axios.put('http://localhost:3000/lists/' + this.$route.params.id, 
+            {
+                taskname: this.lists.taskname,
+                priority: this.lists.priority,
+               // status:this.lists.status,
+                // taskname:"", 
+                // priority:""
+            }, 
+            {
+
+            });
         },
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
 div {
     text-align: center;
-    background-color: beige;
+    background-color:antiquewhite;
 }
 
 h1 {
