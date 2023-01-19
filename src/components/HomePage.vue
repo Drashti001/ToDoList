@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <div class="container" >
+    <div class="container">
         <header>
             <h1 style="text-align:center; background-color:lightblue">Home Page</h1>
         </header>
@@ -10,14 +10,25 @@
                     <div class="col-md-12 col-xl-10">
 
                         <div class="card">
-
                             <div class="card-header p-3">
-                                <h5 style=" margin-top: 0.67em;font-weight: bold;">To-do List Application <button type="button" class="btn btn-light" style="float: right;  ">
-                                    <router-link to="/add">Add Task</router-link>
-                                </button></h5>
+                                <h4 style="font-size:larger; font-weight:500">To Do List Application <button type="button" style="float:right; " class="btn btn-info">
+                                        <router-link to="/add">Add New Task +</router-link>
+                                    </button>
+                                </h4>
 
-                                
                             </div>
+                            <!-- <div class="title">
+                                <h2>To Do List Application</h2>
+                                <button type="button" style="float:right"><i class="fas fa-plus"></i></button>
+                            </div> -->
+
+                            <!-- <div class="card-header p-3"> -->
+
+                            <!-- <h5 style=" margin-top: 0.67em;font-weight: bold;">To-do List Application <button type="button" class="btn btn-light" style="float: right;  "> -->
+                            <!-- <router-link to="/add">Add Task</router-link> -->
+                            <!-- </button></h5> -->
+
+                            <!-- </div> -->
                             <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; ">
 
                                 <table class="table">
@@ -43,7 +54,7 @@
                                             <td class="align-middle" v-bind:class="list.status ? 'isclicked' : '' ">{{ list.taskname }}</td>
                                             <td class="align-middle">
                                                 <button type="button" class="btn btn-info">{{ list.priority }}</button>
-                                               <!-- <h6 class="mb-0"><span>{{ list.priority }}</span></h6>-->
+                                                <!-- <h6 class="mb-0"><span>{{ list.priority }}</span></h6>-->
                                             </td>
 
                                             <td class="align-middle">
@@ -84,7 +95,7 @@ export default {
         try {
             const res = await axios.get(`http://localhost:3000/lists/`);
             this.lists = res.data;
-           // console.log(this.lists);
+            // console.log(this.lists);
         } catch (error) {
             console.log(error);
         }
@@ -96,11 +107,11 @@ export default {
             this.lists = this.lists.filter((list) => list.id !== id);
         },
         ChkStatus: function (list) {
-           // console.log(list.id);
+            // console.log(list.id);
             if (list.status == false) {
-                
+
                 axios.put("http://localhost:3000/lists/" + list.id, {
-                    
+
                     taskname: list.taskname,
                     priority: list.priority,
                     status: true,

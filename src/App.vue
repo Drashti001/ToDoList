@@ -4,6 +4,7 @@
     <!--<to-do-add></to-do-add>-->
   <router-view></router-view>
   
+  
    
   </div>
 </template>
@@ -18,6 +19,7 @@
 export default {
   name: 'App',
   components: {
+
     //'to-do-edit':ToDoEdit
     //'to-do-home':HomePage,
     //'ToDoAdd':ToDoAdd,
