@@ -1,40 +1,51 @@
 {
   "lists": [
     {
-      "taskname": "learning React.js",
-      "priority": "Low",
-      "status": false,
-      "id": 14
-    },
-    {
-      "taskname": "learning vuejs",
-      "priority": "Medium",
-      "status": true,
-      "id": 15
-    },
-    {
-      "taskname": "learning laravel",
-      "priority": "Low",
-      "status": true,
-      "id": 20
-    },
-    {
       "taskname": "learning C++",
       "priority": "Low",
       "status": false,
       "id": 22
     },
     {
-      "taskname": "learning php",
+      "taskname": "learning C",
       "priority": "Low",
       "status": false,
-      "id": 23
+      "id": 21
+    },
+    {
+      "taskname": "learn vuejs",
+      "priority": "Low",
+      "status": false,
+      "id": 24
+    },
+    {
+      "taskname": "abcd",
+      "priority": "Medium",
+      "status": false,
+      "id": 25
     },
     {
       "taskname": "abcd",
       "priority": "High",
       "status": false,
-      "id": 24
+      "id": 26
+    }
+  ],
+  "users": [
+    {
+      "email": "d@gmail.com",
+      "pwd": "1234",
+      "id": 0
+    },
+    {
+      "email": "abc@gmail.com",
+      "pwd": "abc",
+      "id": 1
+    },
+    {
+      "email": "drashti@gmail.com",
+      "pwd": "123",
+      "id": 2
     }
   ]
 }

@@ -1,37 +1,29 @@
 <template>
-<div id="app">
+<div>
     <div class="container">
         <header>
             <h1 style="text-align:center; background-color:lightblue">Home Page</h1>
         </header>
+
         <section class="vh-100" style="background-color:beige">
+
             <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center">
+                    <transition name="modal">
+                        <div class="modal-mask" v-if="showModal">
+                            <to-do-add @onclick="" @close="closeModal" />
+                        </div>
+                    </transition>
                     <div class="col-md-12 col-xl-10">
 
                         <div class="card">
                             <div class="card-header p-3">
-                            <!-- This is title of ToDoList application -->
-                                <h4 style="font-size:larger; font-weight:500">To Do List Application <button type="button" style="float:right; " class="btn btn-info">
-                                        <router-link to="/add">Add New Task +</router-link>
-                                    </button>
+                                <h4 style="font-size:larger; font-weight:500">To Do List Application <button type="button" style="float:right;" class="btn btn-info" @click="showModal = true">AddTask +</button>
+
                                 </h4>
 
                             </div>
-                            <!-- <div class="title">
-                                <h2>To Do List Application</h2>
-                                <button type="button" style="float:right"><i class="fas fa-plus"></i></button>
-                            </div> -->
-
-                            <!-- <div class="card-header p-3"> -->
-
-                            <!-- <h5 style=" margin-top: 0.67em;font-weight: bold;">To-do List Application <button type="button" class="btn btn-light" style="float: right;  "> -->
-                            <!-- <router-link to="/add">Add Task</router-link> -->
-                            <!-- </button></h5> -->
-
-                            <!-- </div> -->
                             <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; ">
-
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -51,68 +43,92 @@
                                                     {{ list.status ? 'done' : 'undone' }}
                                                 </label>
                                             </div>
-
                                             <td class="align-middle" v-bind:class="list.status ? 'isclicked' : '' ">{{ list.taskname }}</td>
                                             <td class="align-middle">
                                                 <button type="button" class="btn btn-info">{{ list.priority }}</button>
-                                                <!-- <h6 class="mb-0"><span>{{ list.priority }}</span></h6>-->
-                                            </td>
 
+                                            </td>
                                             <td class="align-middle">
                                                 <router-link :to="'/edit/' + list.id" class="btn btn-primary">EDIT</router-link>&nbsp;
 
                                                 <button id="delete" class="btn btn-secondary" v-on:click="removeTask(list.id)">DELETE</button>
                                             </td>
                                         </tr>
-                                    </tbody>
 
+                                    </tbody>
                                 </table>
 
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
+
         </section>
+
     </div>
 </div>
 </template>
 
 <script>
 import axios from "axios";
+import TodoAdd from "@/components/ToDoAdd.vue";
+
 export default {
-    name: "App",
-    data() {
+    name: "HomePage",
+    components: {
+        'to-do-add': TodoAdd
+    },
+    data: function () {
         return {
             lists: [],
-            //upstatus: "",
-        };
+            showModal: false,
+            taskname: "",
+            priority: null,
+            status: false
+
+        }
     },
-
-    async created() {
-
+   
+    methods: {
+        addTask() {
+        //alert('dwdsads');ˀ
         try {
+
             const res = await axios.get(`http://localhost:3000/lists/`);
+            console.log(res);
             this.lists = res.data;
-            // console.log(this.lists);
+            console.log(this.lists);
         } catch (error) {
             console.log(error);
         }
-
     },
-    methods: {
-        removeTask(id) {
-            axios.delete(`http://localhost:3000/lists/${id}`);
-            this.lists = this.lists.filter((list) => list.id !== id);
+        closeModal() {
+            this.showModal = false;
         },
+        // async addItem() {
+        //     // alert('sfdfdd');
+        //     const res = await axios
+        //         .post(`http://localhost:3000/lists`, {
+        //             taskname: this.taskname,
+        //             priority: this.priority,
+        //             status: false,
+
+        //         });
+        //     console.log(res.data, 'api');
+        //     console.log(this.lists, 'response data');
+        //     // this.lists.push(res.data);
+        //     // this.lists = [...this.lists, res.data];
+        //     // console.log(this.lists);
+        //     //  this.taskname = "";
+        //     //  this.priority = "";
+
+        // },
+
         ChkStatus: function (list) {
-            // console.log(list.id);
+            console.log(list.id);
             if (list.status == false) {
-
                 axios.put("http://localhost:3000/lists/" + list.id, {
-
                     taskname: list.taskname,
                     priority: list.priority,
                     status: true,
@@ -120,44 +136,23 @@ export default {
                 }).then(function () {
                     console.log(list.status);
                 });
-                //this.upstatus = lists.data.status;
-                // console.log(this.upstatus);
-                //alert("User updated successfully!");
-                // location.reload();
-            } else {
 
+            } else {
                 axios.put("http://localhost:3000/lists/" + list.id, {
                     taskname: list.taskname,
                     priority: list.priority,
                     status: false,
                     id: list.id,
-                }).then(function () {
+                }).then(function () {});
 
-                });
-                //this.upstatus = lists.data.status;
-                // console.log(this.upstatus);
-                //alert("User updated succesfully!");
-                // location.reload();
             }
-        }
-    },
-    // moveToEdit() {
-    // this.$router.push('/edit');
-    // }
+        },
+        removeTask(id) {
+            axios.delete(`http://localhost:3000/lists/${id}`);
+            this.lists = this.lists.filter((list) => list.id !== id);
+        },
+    }
 }
-
-//alert("qqqqqq");
-//console.log( this.$http);
-/* this.$http.get('http://localhost:3000/lists').then(function (data) {
-      console.log(data);
-      // this.blog = data.body;
-      return data.json();
-  }).then(function () {
-      //taskname = this.taskname;
-      //priority = this.priority;
-      //status=this.status;
-
-  })*/
 </script>
 
 <style scoped>
