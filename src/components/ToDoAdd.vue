@@ -27,7 +27,7 @@
 
         <div class="modal-footer">
 
-            <button class="btn btn-success" @click="handleSave" v-on:click="onclick()">
+            <button class="btn btn-success" @click="handleSave" v-on:click="onClick()">
 
                 Save
 
@@ -51,45 +51,86 @@ export default {
     name: "TodoAdd",
     data() {
         return {
+            // lists: '',
             lists: [],
             taskname: "",
             priority: null
-            // dataObj: {
-            //     title: '',
-            //     body: ''
+            // task:{
+
+            // taskname: "",
+            // priority: null
             // }
+
         }
     },
-    
+
     methods: {
-       async onclick() {
-            const res = await axios
-                .post(`http://localhost:3000/lists`, {
-                    taskname: this.taskname,
-                    priority: this.priority,
-                    status: false,
-                });
+        // async onClick() {
+        //     try {
+        //         const userdata = await axios.post(`http://localhost:3000/lists/`, {
+        //             taskname: this.taskname,
+        //             priority: this.priority,
+        //             status: false,
+        //         });
+        //         console.log(userdata.data);
+        //         // console.log(userdata.data);
+        //         this.$emit("data-event", userdata.data);
+        //        // this.OpenClose = !this.OpenClose;
+        //         //this.$emit("close-modal-event");
+        //     } catch (e) {
+        //         console.log(e);
+        //     }},
+        onClick() {
+            // this.$emit('data-event',this.task);
+            //this.$emit('update-list', 'drashti');
+            axios.post(`http://localhost:3000/lists`, {
+                taskname: this.taskname,
+                priority: this.priority,
+                status: false,
+            }).then((response) => {
+                
+                //this.$emit("update-new-list");
 
-            //this.lists = [...this.lists, res.data];
-            this.taskname = "";
-            this.priority = "";
-            //console.log(this.lists);
-            console.log(res.data, 'api');
-            this.lists.push(res.data);
-            console.log(this.lists, 'response data');
-           // this.$emit('onclick', this.lists);
+               // this.$emit("update-list", response.data);
+                this.$emit("update-new-list");
+                console.log(response.data,'api called');
+               // console.log(response, 'api called');
 
+            })
         },
+        // async onclick() {
+
+        //     const res = await axios
+        //         .post(`http://localhost:3000/lists`, {
+        //             taskname: this.taskname,
+        //             priority: this.priority,
+        //             status: false,
+        //         });
+
+        //     //this.lists = [...this.lists, res.data];
+        //     this.taskname = "";
+        //     this.priority = "";
+        //     //console.log(this.lists);
+        //     //console.log(res.data, 'api');
+        //     this.lists = res.data;
+        //     this.$emit('updateList','drashti');
+        //     //this.lists.push(res.data);
+        //     //console.log(this.lists, 'response data');
+        //      //this.$emit('updateList', this.lists);
+
+        // },
         handleSave() {
-            console.log(this.lists);
+            // console.log(this.lists);
             this.handleClose();
         },
         handleClose() {
+            console.log('sssa');
             this.$emit('close');
+            
         },
-        GoToHome() {
-            this.$router.push('/');
-        }
+        // GoToHome() {
+        //     this.$router.push('/');
+        // }
 
     }
 }

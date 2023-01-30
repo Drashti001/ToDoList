@@ -9,16 +9,23 @@
 
             <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center">
+                    <!-- <to-do-add v-if="showModal" 
+                    :visible="true" 
+                    
+                     @close="closeModal" 
+                     @data-event="insertdata($event)" /> -->
+
                     <transition name="modal">
                         <div class="modal-mask" v-if="showModal">
-                            <to-do-add @onclick="" @close="closeModal" />
+                            <to-do-add  @close="closemodal" @update-new-list="updatehome" />
                         </div>
                     </transition>
                     <div class="col-md-12 col-xl-10">
 
                         <div class="card">
                             <div class="card-header p-3">
-                                <h4 style="font-size:larger; font-weight:500">To Do List Application <button type="button" style="float:right;" class="btn btn-info" @click="showModal = true">AddTask +</button>
+                                <h4 style="font-size:larger; font-weight:500">To Do List Application 
+                                    <button type="button" style="float:right;" class="btn btn-info" @click="showModal = true">AddTask +</button>
 
                                 </h4>
 
@@ -37,6 +44,7 @@
                                     <tbody>
 
                                         <tr class="fw-normal" v-for="list of lists " v-bind:key="list.id">
+
                                             <div class="form-check">
                                                 <input v-on:click="ChkStatus(list)" class="form-check-input" type="checkbox" v-model="list.status" />
                                                 <label class="form-check-label" for="flexCheckCheckedDisabled">
@@ -59,6 +67,7 @@
                                 </table>
 
                             </div>
+                            {{ singlelists }}
                         </div>
                     </div>
                 </div>
@@ -82,48 +91,60 @@ export default {
     data: function () {
         return {
             lists: [],
-            showModal: false,
+
             taskname: "",
             priority: null,
-            status: false
+            status: false,
+            showModal: false,
+            singlelists: ''
 
         }
     },
-   
-    methods: {
-        addTask() {
-        //alert('dwdsads');ˀ
+    async created() {
         try {
-
             const res = await axios.get(`http://localhost:3000/lists/`);
-            console.log(res);
+            // console.log(res.data);
             this.lists = res.data;
-            console.log(this.lists);
+            // console.log(this.lists);
         } catch (error) {
             console.log(error);
         }
     },
-        closeModal() {
+
+    methods: {
+        // insertdata(value) {
+        //     this.lists.push(value);
+        // },
+
+        //     async addTask() {
+        //     //alert('dwdsads');ˀ
+        //     try {
+
+        //         const res = await axios.get(`http://localhost:3000/lists/`);
+        //         console.log(res);
+        //         this.lists = res.data;
+        //         console.log(this.lists);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
+        updatehome() {
+            alert('sssassasasa');
+            console.log(this.singlelists);
+          
+          // console.log(value,'value');
+            
+           // this.lists.push(value);
+           // this.lists.push(value);
+            // console.log(value, 'home');
+            // this.singlelists = value;
+             //console.log(value,'abcdd');
+            //console.log(this.lists, 'alerttt');
+        },
+        closemodal() {
+            console.log('close called');
             this.showModal = false;
         },
-        // async addItem() {
-        //     // alert('sfdfdd');
-        //     const res = await axios
-        //         .post(`http://localhost:3000/lists`, {
-        //             taskname: this.taskname,
-        //             priority: this.priority,
-        //             status: false,
-
-        //         });
-        //     console.log(res.data, 'api');
-        //     console.log(this.lists, 'response data');
-        //     // this.lists.push(res.data);
-        //     // this.lists = [...this.lists, res.data];
-        //     // console.log(this.lists);
-        //     //  this.taskname = "";
-        //     //  this.priority = "";
-
-        // },
 
         ChkStatus: function (list) {
             console.log(list.id);
@@ -133,7 +154,9 @@ export default {
                     priority: list.priority,
                     status: true,
                     id: list.id,
+
                 }).then(function () {
+
                     console.log(list.status);
                 });
 

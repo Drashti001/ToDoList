@@ -13,22 +13,10 @@
       "id": 21
     },
     {
-      "taskname": "learn vuejs",
-      "priority": "Low",
-      "status": false,
-      "id": 24
-    },
-    {
-      "taskname": "abcd",
+      "taskname": "learn Vue2",
       "priority": "Medium",
       "status": false,
-      "id": 25
-    },
-    {
-      "taskname": "abcd",
-      "priority": "High",
-      "status": false,
-      "id": 26
+      "id": 24
     }
   ],
   "users": [
