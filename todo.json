@@ -19,16 +19,9 @@
       "id": 24
     },
     {
-      "taskname": "learning vuejs",
-      "priority": "High",
-      "status": false,
+      "taskname": "learning java",
+      "priority": "Low",
       "id": 25
-    },
-    {
-      "taskname": "learning laravel",
-      "priority": "High",
-      "status": false,
-      "id": 26
     }
   ],
   "users": [
