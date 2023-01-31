@@ -17,6 +17,18 @@
       "priority": "Medium",
       "status": false,
       "id": 24
+    },
+    {
+      "taskname": "learning vuejs",
+      "priority": "High",
+      "status": false,
+      "id": 25
+    },
+    {
+      "taskname": "learning laravel",
+      "priority": "High",
+      "status": false,
+      "id": 26
     }
   ],
   "users": [

@@ -17,14 +17,14 @@
 
                     <transition name="modal">
                         <div class="modal-mask" v-if="showModal">
-                            <to-do-add  @close="closemodal" @update-new-list="updatehome" />
+                            <to-do-add @update-list="updatehome" @close-modal-event="closeModal" />
                         </div>
                     </transition>
                     <div class="col-md-12 col-xl-10">
 
                         <div class="card">
                             <div class="card-header p-3">
-                                <h4 style="font-size:larger; font-weight:500">To Do List Application 
+                                <h4 style="font-size:larger; font-weight:500">To Do List Application
                                     <button type="button" style="float:right;" class="btn btn-info" @click="showModal = true">AddTask +</button>
 
                                 </h4>
@@ -67,7 +67,7 @@
                                 </table>
 
                             </div>
-                            {{ singlelists }}
+                            <!-- {{ singlelists }} -->
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ export default {
             priority: null,
             status: false,
             showModal: false,
-            singlelists: ''
+            // singlelists: ''
 
         }
     },
@@ -112,37 +112,16 @@ export default {
     },
 
     methods: {
-        // insertdata(value) {
-        //     this.lists.push(value);
-        // },
 
-        //     async addTask() {
-        //     //alert('dwdsads');ˀ
-        //     try {
+        updatehome(value) {
 
-        //         const res = await axios.get(`http://localhost:3000/lists/`);
-        //         console.log(res);
-        //         this.lists = res.data;
-        //         console.log(this.lists);
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
-        updatehome() {
-            alert('sssassasasa');
-            console.log(this.singlelists);
-          
-          // console.log(value,'value');
-            
-           // this.lists.push(value);
-           // this.lists.push(value);
-            // console.log(value, 'home');
-            // this.singlelists = value;
-             //console.log(value,'abcdd');
-            //console.log(this.lists, 'alerttt');
+            alert('Updat Method Called');
+            console.log(value, 'value');
+            this.lists.push(value);
+
         },
-        closemodal() {
-            console.log('close called');
+        closeModal() {
+
             this.showModal = false;
         },
 
