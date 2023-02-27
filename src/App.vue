@@ -4,8 +4,8 @@
     <!--<to-do-add></to-do-add>-->
    <router-view></router-view> 
    <!-- <to-do-home></to-do-home> -->
- <!-- <login-page></login-page> 
-   -->
+   <!-- <login-page></login-page>  -->
+  
   
    
   </div>
@@ -24,7 +24,7 @@ export default {
   components: {
 
     //'to-do-edit':ToDoEdit
-   // 'to-do-home':HomePage,
+    //'to-do-home':HomePage,
     //'ToDoAdd':ToDoAdd,
    // 'PageNotFound':PageNotFound
    //'login-page':LoginPage

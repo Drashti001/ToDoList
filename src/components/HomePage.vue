@@ -25,6 +25,7 @@
                         <div class="card">
                             <div class="card-header p-3">
                                 <h4 style="font-size:larger; font-weight:500">To Do List Application
+                                  
                                     <button type="button" style="float:right;" class="btn btn-info" @click="showModal = true">AddTask +</button>
 
                                 </h4>
@@ -44,13 +45,13 @@
                                     <tbody>
 
                                         <tr class="fw-normal" v-for="list of lists " v-bind:key="list.id">
-
                                             <div class="form-check">
                                                 <input v-on:click="ChkStatus(list)" class="form-check-input" type="checkbox" v-model="list.status" />
                                                 <label class="form-check-label" for="flexCheckCheckedDisabled">
                                                     {{ list.status ? 'done' : 'undone' }}
                                                 </label>
                                             </div>
+                                            
                                             <td class="align-middle" v-bind:class="list.status ? 'isclicked' : '' ">{{ list.taskname }}</td>
                                             <td class="align-middle">
                                                 <button type="button" class="btn btn-info">{{ list.priority }}</button>
@@ -65,15 +66,16 @@
 
                                     </tbody>
                                 </table>
-
+                                
                             </div>
                             <!-- {{ singlelists }} -->
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- <login-page></login-page> -->
         </section>
+       
 
     </div>
 </div>
@@ -81,12 +83,16 @@
 
 <script>
 import axios from "axios";
+//import TextComponent from '@/components/TextComponent'
 import TodoAdd from "@/components/ToDoAdd.vue";
+//import LoginPage from './LoginPage.vue';
 
 export default {
     name: "HomePage",
     components: {
-        'to-do-add': TodoAdd
+        'to-do-add': TodoAdd,
+        //'login-page':LoginPage,
+       // 'text-component':TextComponent
     },
     data: function () {
         return {
@@ -115,7 +121,7 @@ export default {
 
         updatehome(value) {
 
-            alert('Updat Method Called');
+            alert('Update Method Called');
             console.log(value, 'value');
             this.lists.push(value);
 
@@ -128,7 +134,7 @@ export default {
         ChkStatus: function (list) {
             console.log(list.id);
             if (list.status == false) {
-                axios.put("http://localhost:3000/lists/" + list.id, {
+                this.$axios.$put("http://localhost:3000/lists/" + list.id, {
                     taskname: list.taskname,
                     priority: list.priority,
                     status: true,
@@ -140,7 +146,7 @@ export default {
                 });
 
             } else {
-                axios.put("http://localhost:3000/lists/" + list.id, {
+                this.$axios.$put("http://localhost:3000/lists/" + list.id, {
                     taskname: list.taskname,
                     priority: list.priority,
                     status: false,

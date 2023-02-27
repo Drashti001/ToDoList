@@ -1,6 +1,7 @@
 <template>
 <div>
-    <form style="width:600px;margin:auto">
+    <h1>Login Page</h1>
+    <form @submit.prevent="login" style="width:600px;margin:auto">
         <div class="form-group">
             <label>Email</label>
             <input type="email" class="form-control" v-model="email" placeholder="Email" />
@@ -9,7 +10,7 @@
             <label>Password</label>
             <input type="password" class="form-control" v-model="pwd" placeholder="Password" />
         </div>
-        <button v-on:click="login" class="btn btn-primary btn-block">Login</button>
+        <button class="btn btn-primary btn-block">Login</button>
         <!-- <p>
             <router-link to="/">Sign-up</router-link>
         </p> -->
@@ -40,9 +41,12 @@ export default {
             //   console.log(email);
             //alert('dddsdsds');
             axios.get(`http://localhost:3000/users?email=${this.email}&pwd=${this.pwd}`).then((response) => {
-                console.log(response)
+                console.log(response);
+                this.$router.push("/");
             }).catch((e) => {
-                console.log(e)
+                
+                console.log(e);
+                
             });
 
             //    let result = await axios.get(
@@ -66,5 +70,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+h1{
+    text-align: center;
+   
+    
+}
 </style>
